@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Bootstrap and style CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- jquery, moment, and app.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="assets/app.js"></script>
+
+    
+      <!-- Firebase References -->
+      <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBtnOFBtpJc_sL8xRSudjBWRPk6hydhckA",
+    authDomain: "bus-schedule-55e25.firebaseapp.com",
+    databaseURL: "https://bus-schedule-55e25.firebaseio.com",
+    projectId: "bus-schedule-55e25",
+    storageBucket: "bus-schedule-55e25.appspot.com",
+    messagingSenderId: "158464621211",
+    appId: "1:158464621211:web:8408fd642a241194"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+    <title>Bus Schedule</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="jumbotron">
+            <h1 class="display-3">RTD Bus Schedule</h1>
+          </div>
+        </div>
+      </div>
+      
+      <br><br>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              Saved Train Schedules
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                  </tr>
+                </thead>
+                <tbody id="table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+<br>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              Enter Bus Details
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Enter Name"
+                  />
+                </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="destination"
+                      placeholder="Enter Destination"
+                    />
+                  </div>
+                  </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                <div class="form-group">
+                  <label for="departureTime">First Train Time</label>
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="departureTime"
+                    placeholder="Enter Train Time"
+                  />
+                </div>
+                </div>
+              <div class="col">
+              <div class="form-group">
+                <label for="frequency">Frequency (min)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="frequency"
+                  placeholder="Enter Frequency"
+                />
+              </div>
+              </div>
+            </div>
+
+          </div>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
