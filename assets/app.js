@@ -18,29 +18,30 @@ $(document).ready(function() {
       .val()
       .trim();
 
-    // var nowTime = moment().diff(moment(departureTime), "minutes");
-    // console.log(nowTime);
+    var departureMoment = moment(departureTime, "hh:mm A");
+    var difference = moment().diff(departureMoment, "minutes");
 
-    console.log(moment());
-    console.log(moment().format("hh:mm"));
-    console.log(moment(departureTime));
+    // ***** Research more *****
+    // ***** Lots of Google for this, still don't really get it... *****
+    var remainder = difference % frequency;
+    var minutes = frequency - remainder;
+    // ***** Research more *****
 
-    // var arrivalTime = $("#arrivalTime")
-    //   .val()
-    //   .trim();
-    // var minutesAway = $("#minutesAway")
-    //   .val()
-    //   .trim();
+    var nextDeparture = moment()
+      .add(minutes, "minutes")
+      .format("hh:mm A");
+    var minutesAway = moment(nextDeparture, "hh:mm A").diff(
+      moment(),
+      "minutes"
+    );
 
-    // var duration = arrivalTime - departureTime;
-    // console.log(duration);
     database.ref().push({
       name: name,
       destination: destination,
       departureTime: departureTime,
-      frequency: frequency
-      // arrivalTime: arrivalTime,
-      // minutesAway: minutesAway
+      frequency: frequency,
+      nextDeparture: nextDeparture,
+      minutesAway: minutesAway
     });
   });
 
@@ -51,15 +52,15 @@ $(document).ready(function() {
     var tableName = $("<td>" + x.name + "</td>");
     var tableDestination = $("<td>" + x.destination + "</td>");
     var tableFrequency = $("<td>" + x.frequency + "</td>");
-    // var tableArrivalTime = $("<td>" + x.arrivalTime + "</td>");
-    // var tableMinutesAway = $("<td>" + x.minutesAway + "</td>");
+    var tablenextDeparture = $("<td>" + x.nextDeparture + "</td>");
+    var tableMinutesAway = $("<td>" + x.minutesAway + "</td>");
 
     tableRow.append(
       tableName,
       tableDestination,
-      tableFrequency
-      // tableArrivalTime,
-      // tableMinutesAway
+      tableFrequency,
+      tablenextDeparture,
+      tableMinutesAway
     );
 
     $("#table").append(tableRow);
